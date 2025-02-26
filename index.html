@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מעקב הכנסות</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <script defer src="charts.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>מעקב הכנסות</h1>
+
+    <div class="accordion">הוסף תלמיד</div>
+    <div class="panel">
+        <form id="studentForm">
+            <label for="studentName">שם התלמיד:</label>
+            <input type="text" id="studentName" required>
+            <label for="lessonPrice">מחיר לשיעור (₪):</label>
+            <input type="number" id="lessonPrice" step="0.01" required>
+            <button type="submit">הוסף תלמיד</button>
+        </form>
+    </div>
+
+    <div class="accordion">הוסף תשלום</div>
+    <div class="panel">
+        <form id="paymentForm">
+            <label for="student">תלמיד:</label>
+            <select id="student" required></select>
+            <label for="date">תאריך:</label>
+            <input type="date" id="date" required>
+            <button type="submit">הוסף תשלום</button>
+        </form>
+    </div>
+
+    <h2>תלמידים</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>מחיר לשיעור</th>
+                <th>שם התלמיד</th>
+                <th>פעולות</th>
+            </tr>
+        </thead>
+        <tbody id="studentsTable"></tbody>
+    </table>
+
+    <h2>תשלומים</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>תלמיד</th>
+                <th>תאריך</th>
+                <th>סכום</th>
+                <th>הסר</th>
+                <th>הדפס קבלה</th>
+            </tr>
+        </thead>
+        <tbody id="paymentsTable"></tbody>
+    </table>
+
+    <h2>סך הכנסות: <span id="totalIncome">0.00</span> ₪</h2>
+
+    <canvas id="incomeChart" width="400" height="200"></canvas>
+
+    <button id="clearAllPayments">נקה את כל התשלומים</button>
+    <button id="printPayments">הדפס תשלומים</button>
+</body>
+</html>
